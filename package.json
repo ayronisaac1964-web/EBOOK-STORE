@@ -2,7 +2,7 @@
   "name": "ebook-storefront-backend",
   "version": "1.0.0",
   "private": true,
-  "engines": { "node": "18.x" },
+  "engines": { "node": "22.x" },
   "dependencies": {
     "mongodb": "^6.8.0",
     "resend": "^3.5.0",
