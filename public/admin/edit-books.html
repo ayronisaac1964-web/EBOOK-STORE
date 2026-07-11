@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Books — Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body class="admin">
+  <div class="admin-shell">
+    <nav class="admin-nav">
+      <span class="brand">AuthorShelf</span>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="add-book.html">Add a Book</a>
+      <a href="edit-books.html" aria-current="page">Manage Books</a>
+      <a href="orders.html">Orders</a>
+      <button class="admin-logout" id="admin-logout">Log out</button>
+    </nav>
+
+    <main class="admin-main">
+      <div class="admin-header">
+        <h1>Manage Books</h1>
+      </div>
+
+      <div id="books-message"></div>
+
+      <!-- Edit panel, hidden until "Edit" is clicked on a row -->
+      <form id="edit-form" class="admin-form" style="display:none; margin-bottom: var(--space-xl); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-md); background: var(--color-bg-raised);">
+        <h2 style="font-size: var(--fs-h3);">Editing: <span id="edit-title-label"></span></h2>
+        <input type="hidden" id="edit-id">
+        <label>
+          Title
+          <input type="text" id="edit-title" required>
+        </label>
+        <label>
+          Description
+          <textarea id="edit-description"></textarea>
+        </label>
+        <label>
+          Price (₦)
+          <input type="number" id="edit-price" min="1" step="1" required>
+        </label>
+        <div style="display:flex; gap: var(--space-xs);">
+          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" id="edit-cancel">Cancel</button>
+        </div>
+      </form>
+
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="books-body">
+          <tr><td colspan="4">Loading…</td></tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/admin-auth.js"></script>
+  <script src="../assets/js/admin-edit-books.js"></script>
+</body>
+</html>

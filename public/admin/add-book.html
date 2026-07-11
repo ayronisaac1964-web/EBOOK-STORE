@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add a Book — Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body class="admin">
+  <div class="admin-shell">
+    <nav class="admin-nav">
+      <span class="brand">AuthorShelf</span>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="add-book.html" aria-current="page">Add a Book</a>
+      <a href="edit-books.html">Manage Books</a>
+      <a href="orders.html">Orders</a>
+      <button class="admin-logout" id="admin-logout">Log out</button>
+    </nav>
+
+    <main class="admin-main">
+      <div class="admin-header">
+        <h1>Add a Book</h1>
+      </div>
+
+      <div id="form-message"></div>
+
+      <form id="add-book-form" class="admin-form">
+        <label>
+          Title
+          <input type="text" id="title" name="title" required>
+        </label>
+
+        <label>
+          Description
+          <textarea id="description" name="description"></textarea>
+        </label>
+
+        <label>
+          Excerpt <span class="field-hint">(optional — shown as a sample on the book page)</span>
+          <textarea id="excerpt" name="excerpt"></textarea>
+        </label>
+
+        <label>
+          Price (₦, whole Naira)
+          <input type="number" id="price" name="price" min="1" step="1" required>
+        </label>
+
+        <label>
+          Cover image
+          <input type="file" id="cover-file" name="cover-file" accept="image/*" required>
+          <span class="upload-progress" id="cover-status"></span>
+        </label>
+
+        <label>
+          Ebook file <span class="field-hint">(.epub or .pdf — stored privately, never public)</span>
+          <input type="file" id="ebook-file" name="ebook-file" accept=".epub,.pdf" required>
+          <span class="upload-progress" id="ebook-status"></span>
+        </label>
+
+        <button type="submit" class="btn btn-primary" id="submit-btn">Add Book</button>
+      </form>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/admin-auth.js"></script>
+  <script src="../assets/js/admin-add-book.js"></script>
+</body>
+</html>

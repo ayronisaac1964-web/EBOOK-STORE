@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Book Detail — Author Name</title>
+<meta name="description" content="Read the full description and sample excerpt before you buy.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Token file loads first, then base/shared, then this page's own rules -->
+<link rel="stylesheet" href="../assets/css/variables.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/book-detail.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html" class="brand">Author<span>Shelf</span></a>
+    <nav class="nav-links">
+      <a href="storefront.html">Books</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a href="cart.html" class="btn btn-secondary nav-cta cart-link">
+      Cart <span class="cart-count" id="cart-count">0</span>
+    </a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ BOOK DETAIL ============ -->
+  <!-- All content below is populated by book-detail.js, which reads the -->
+  <!-- ?id= query param, looks it up in BOOKS (assets/js/books-data.js), -->
+  <!-- and fills these elements. This one file serves every book. -->
+  <section class="section book-detail" id="book-detail-root">
+
+    <div class="container">
+      <a href="storefront.html" class="back-link">&larr; Back to all books</a>
+
+      <div class="detail-grid">
+        <div class="detail-cover placeholder" id="detail-cover">
+          <span>Cover placeholder</span>
+        </div>
+
+        <div class="detail-body">
+          <h1 id="detail-title">Loading book&hellip;</h1>
+          <p class="detail-price" id="detail-price"></p>
+          <p class="detail-description" id="detail-description"></p>
+
+          <button class="btn btn-primary btn-add-detail" id="add-to-cart-btn">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <!-- Sample excerpt — hidden by book-detail.js if the book has none -->
+      <div class="excerpt-block" id="excerpt-block" hidden>
+        <span class="eyebrow">Sample excerpt</span>
+        <h2>Read the opening pages</h2>
+        <p class="excerpt-text" id="excerpt-text"></p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============ NOT FOUND STATE ============ -->
+  <!-- Shown instead of book-detail if ?id= is missing or doesn't match a book -->
+  <section class="section book-not-found" id="book-not-found" hidden>
+    <div class="container">
+      <span class="eyebrow">Hmm</span>
+      <h1>We couldn't find that book</h1>
+      <p>It may have been removed, or the link is out of date.</p>
+      <a href="storefront.html" class="btn btn-primary">Browse all books</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-cta">
+      <h2>Ready to start reading?</h2>
+      <a href="storefront.html" class="btn btn-primary">Browse the Books</a>
+    </div>
+    <div class="footer-grid">
+      <a href="../index.html" class="brand">Author<span>Shelf</span></a>
+      <nav class="footer-links">
+        <a href="about.html">About</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="lookup-order.html">Look Up Order</a>
+      </nav>
+    </div>
+    <p class="footer-bottom">&copy; 2026 Author Name. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="../assets/js/books-data.js"></script>
+<script src="../assets/js/cart.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/book-detail.js"></script>
+</body>
+</html>

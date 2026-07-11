@@ -1,0 +1,283 @@
+/* ============================================
+   LANDING PAGE — page-specific rules
+   Marketing/entry page only. Catalog lives on
+   pages/storefront.html (built in a later step).
+   ============================================ */
+
+/* --- Hero --- */
+.hero {
+  padding: var(--space-3xl) 0 var(--space-2xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -20% -10% auto -10%;
+  height: 60%;
+  background: radial-gradient(ellipse at 30% 0%, rgba(201, 162, 75, 0.16), transparent 60%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  display: grid;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+
+@media (min-width: 860px) {
+  .hero-inner {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+}
+
+.hero-author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-lg);
+  font-size: var(--fs-small);
+  color: var(--color-cream-dim);
+}
+
+.author-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--color-gold);
+}
+
+.hero h1 {
+  font-size: var(--fs-hero);
+  max-width: 14ch;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--color-gold);
+}
+
+.hero-sub {
+  margin-top: var(--space-md);
+  max-width: 46ch;
+  color: var(--color-cream-dim);
+  font-size: 1.1rem;
+}
+
+.hero-actions {
+  margin-top: var(--space-lg);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.hero-note {
+  font-size: var(--fs-small);
+  color: var(--color-cream-dim);
+}
+
+/* Hero visual: stacked "book spine" motif, no real cover art yet */
+.hero-visual {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-md);
+  position: relative;
+}
+
+.spine-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.spine {
+  position: absolute;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 20px 40px -20px rgba(0,0,0,0.6);
+}
+
+.spine-1 { inset: 12% 8% 8% 30%; background: linear-gradient(160deg, #2b1015, #1a0e12); z-index: 3; }
+.spine-2 { inset: 4% 18% 16% 12%; background: linear-gradient(160deg, var(--color-burgundy), #24131a); z-index: 2; transform: rotate(-4deg); }
+.spine-3 { inset: 0 28% 24% 0%; background: linear-gradient(160deg, #3a1a22, #1a0e12); z-index: 1; transform: rotate(4deg); }
+
+.spine-label {
+  position: absolute;
+  bottom: var(--space-sm);
+  left: var(--space-sm);
+  right: var(--space-sm);
+  font-family: var(--font-display);
+  color: var(--color-gold);
+  font-size: 0.8rem;
+}
+
+/* --- How it works --- */
+.steps {
+  display: grid;
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+}
+
+@media (min-width: 720px) {
+  .steps { grid-template-columns: repeat(3, 1fr); }
+}
+
+.step {
+  padding: var(--space-lg);
+  background: var(--color-bg-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  position: relative;
+}
+
+.step-number {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--color-gold);
+  opacity: 0.5;
+  margin-bottom: var(--space-sm);
+}
+
+.step h3 { margin-bottom: var(--space-xs); }
+.step p { color: var(--color-cream-dim); font-size: var(--fs-small); }
+
+/* --- Why buy direct --- */
+.why-grid {
+  display: grid;
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+}
+
+@media (min-width: 720px) {
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.why-item {
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-md) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.why-icon {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+}
+
+.why-item h3 { margin-bottom: 0.35rem; }
+.why-item p { color: var(--color-cream-dim); font-size: var(--fs-small); }
+
+/* --- Featured titles --- */
+.featured-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.book-grid {
+  display: grid;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 720px) {
+  .book-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.book-card { text-align: left; }
+
+.book-cover {
+  aspect-ratio: 2 / 3;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.book-cover span { padding: var(--space-sm); }
+
+.book-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-body);
+  margin-bottom: 0.25rem;
+}
+
+.book-price {
+  color: var(--color-gold);
+  font-size: var(--fs-small);
+  font-weight: 600;
+}
+
+/* --- Author bio teaser --- */
+.bio-block {
+  display: grid;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+@media (min-width: 720px) {
+  .bio-block { grid-template-columns: 0.4fr 0.6fr; }
+}
+
+.bio-photo {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-md);
+  max-width: 260px;
+}
+
+.bio-block p { color: var(--color-cream-dim); margin: var(--space-sm) 0 var(--space-md); }
+
+/* --- FAQ --- */
+.faq-list {
+  margin-top: var(--space-xl);
+  border-top: 1px solid var(--color-border);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--color-cream);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) 0;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  text-align: left;
+}
+
+.faq-icon {
+  flex: none;
+  color: var(--color-gold);
+  font-size: 1.3rem;
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.faq-item[open] .faq-icon { transform: rotate(45deg); }
+
+.faq-answer {
+  color: var(--color-cream-dim);
+  font-size: var(--fs-small);
+  padding: 0 0 var(--space-md);
+  max-width: 65ch;
+}
+
+/* remove default <details> marker */
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary { list-style: none; }

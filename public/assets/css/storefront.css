@@ -1,0 +1,82 @@
+/* ============================================
+   STOREFRONT / CATALOG PAGE — page-specific rules
+   Functional grid page, not a marketing page.
+   Reuses .book-grid / .book-card / .book-cover /
+   .book-title / .book-price from landing.css's
+   featured-titles block — those classes now live
+   conceptually as shared "book card" components,
+   just styled from this file's own selectors here.
+   ============================================ */
+
+/* --- Cart icon in nav --- */
+.cart-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.cart-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: var(--radius-pill);
+  background: var(--color-gold);
+  color: var(--color-bg);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+/* --- Catalog header --- */
+.catalog-head { padding-bottom: var(--space-lg); }
+
+.catalog-head h1 { font-size: var(--fs-h2); }
+
+.catalog-sub {
+  margin-top: var(--space-sm);
+  color: var(--color-cream-dim);
+  max-width: 60ch;
+}
+
+/* --- Catalog grid --- */
+.catalog { padding-top: 0; }
+
+.catalog-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 720px) {
+  .catalog-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Whole card is a link — override anchor defaults, keep .book-card look */
+.book-card-link {
+  display: block;
+  color: inherit;
+}
+
+.book-card-link:hover .book-cover {
+  border-color: var(--color-gold);
+}
+
+.book-card-link .book-cover {
+  transition: border-color var(--dur-fast) var(--ease);
+}
+
+/* --- Add to cart button on each card --- */
+.book-card .btn-add {
+  margin-top: var(--space-xs);
+  width: 100%;
+  justify-content: center;
+  padding: 0.6rem 1rem;
+  font-size: var(--fs-small);
+}
+
+/* --- Empty state (catalog loads with zero books) --- */
+.catalog-empty {
+  color: var(--color-cream-dim);
+  text-align: center;
+  padding: var(--space-2xl) 0;
+}

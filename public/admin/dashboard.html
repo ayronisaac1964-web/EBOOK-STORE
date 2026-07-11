@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body class="admin">
+  <div class="admin-shell">
+    <nav class="admin-nav">
+      <span class="brand">AuthorShelf</span>
+      <a href="dashboard.html" aria-current="page">Dashboard</a>
+      <a href="add-book.html">Add a Book</a>
+      <a href="edit-books.html">Manage Books</a>
+      <a href="orders.html">Orders</a>
+      <button class="admin-logout" id="admin-logout">Log out</button>
+    </nav>
+
+    <main class="admin-main">
+      <div class="admin-header">
+        <h1>Dashboard</h1>
+      </div>
+
+      <div id="dashboard-message"></div>
+
+      <div class="admin-stats" id="admin-stats">
+        <div class="admin-stat"><div class="value">—</div><div class="label">Active books</div></div>
+        <div class="admin-stat"><div class="value">—</div><div class="label">Total books</div></div>
+        <div class="admin-stat"><div class="value">—</div><div class="label">Total orders</div></div>
+        <div class="admin-stat"><div class="value">—</div><div class="label">Orders (7 days)</div></div>
+        <div class="admin-stat"><div class="value">—</div><div class="label">Revenue (paid)</div></div>
+      </div>
+
+      <h2 style="font-size: var(--fs-h3); margin-bottom: var(--space-sm);">Recent orders</h2>
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Items</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody id="recent-orders-body">
+          <tr><td colspan="5">Loading…</td></tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/admin-auth.js"></script>
+  <script src="../assets/js/admin-dashboard.js"></script>
+</body>
+</html>

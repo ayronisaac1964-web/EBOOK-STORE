@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Look Up My Order — Author Name</title>
+<meta name="description" content="Lost your download link? Look up your order with your email and order reference.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Token file loads first, then base/shared, then this page's own rules -->
+<link rel="stylesheet" href="../assets/css/variables.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/lookup-order.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html" class="brand">Author<span>Shelf</span></a>
+    <nav class="nav-links">
+      <a href="storefront.html">Books</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a href="cart.html" class="btn btn-secondary nav-cta cart-link">
+      Cart <span class="cart-count" id="cart-count">0</span>
+    </a>
+  </div>
+</header>
+
+<main>
+
+  <section class="section lookup-page">
+    <div class="container">
+      <span class="eyebrow">Order Lookup</span>
+      <h1>Look up my order</h1>
+      <p class="lookup-intro">
+        Didn't get your confirmation email, or misplaced your download links? Enter the email
+        address you paid with and your order reference below to get them again.
+      </p>
+
+      <!-- ============ LOOKUP FORM ============ -->
+      <form class="lookup-form" id="lookup-form" novalidate>
+        <div class="lookup-field">
+          <label class="lookup-label" for="lookup-email">Email address</label>
+          <input
+            type="email"
+            id="lookup-email"
+            class="lookup-input"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <div class="lookup-field">
+          <label class="lookup-label" for="lookup-reference">Order reference</label>
+          <input
+            type="text"
+            id="lookup-reference"
+            class="lookup-input"
+            placeholder="e.g. T123456789"
+            autocomplete="off"
+            required
+          >
+        </div>
+
+        <p class="lookup-error" id="lookup-error" hidden></p>
+
+        <button type="submit" class="btn btn-primary lookup-submit-btn" id="lookup-submit-btn">
+          Find my order
+        </button>
+      </form>
+
+      <!-- ============ RESULT STATES ============ -->
+      <!-- Only one of these is visible at a time, toggled by lookup-order.js -->
+      <div class="lookup-result lookup-result-info" id="result-not-found" hidden>
+        We couldn't find a paid order matching that email and reference. Double-check both —
+        if your payment is still processing, please wait a few minutes and try again.
+      </div>
+
+      <div class="lookup-result lookup-result-error" id="result-expired" hidden>
+        Your download links for this order have expired. Please contact the author for help
+        re-issuing them.
+      </div>
+
+      <div class="lookup-result lookup-result-success" id="result-success" hidden>
+        <h2>Your downloads</h2>
+        <ul class="lookup-download-list" id="lookup-download-list">
+          <!-- download lines injected here -->
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <a href="../index.html" class="brand">Author<span>Shelf</span></a>
+      <nav class="footer-links">
+        <a href="about.html">About</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="lookup-order.html">Look Up Order</a>
+      </nav>
+    </div>
+    <p class="footer-bottom">&copy; 2026 Author Name. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="../assets/js/cart.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/lookup-order.js"></script>
+</body>
+</html>

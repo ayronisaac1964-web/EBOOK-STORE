@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — Author Name</title>
+<meta name="description" content="Complete your purchase securely with Paystack.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Token file loads first, then base/shared, then this page's own rules -->
+<link rel="stylesheet" href="../assets/css/variables.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/checkout.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html" class="brand">Author<span>Shelf</span></a>
+    <nav class="nav-links">
+      <a href="storefront.html">Books</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a href="cart.html" class="btn btn-secondary nav-cta cart-link">
+      Cart <span class="cart-count" id="cart-count">0</span>
+    </a>
+  </div>
+</header>
+
+<main>
+
+  <section class="section checkout-page">
+    <div class="container">
+      <span class="eyebrow">Checkout</span>
+      <h1>Complete your order</h1>
+
+      <!-- ============ CHECKOUT LAYOUT (populated by checkout.js) ============ -->
+      <div class="checkout-layout" id="checkout-layout" hidden>
+
+        <div class="checkout-form-col">
+          <label class="checkout-label" for="email-input">Email address</label>
+          <p class="checkout-hint">Your download links and receipt go here.</p>
+          <input
+            type="email"
+            id="email-input"
+            class="checkout-input"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required
+          >
+          <p class="checkout-error" id="email-error" hidden>Please enter a valid email address.</p>
+
+          <button class="btn btn-primary checkout-pay-btn" id="pay-btn">
+            Pay with Paystack
+          </button>
+
+          <!-- ============ STATUS STATES ============ -->
+          <!-- Only one of these is visible at a time, toggled by checkout.js -->
+          <div class="checkout-status checkout-status-processing" id="status-processing" hidden>
+            <span class="checkout-spinner" aria-hidden="true"></span>
+            Processing your payment&hellip; please don't close this tab.
+          </div>
+          <div class="checkout-status checkout-status-error" id="status-error" hidden>
+            <span id="status-error-text">Something went wrong starting your payment. Please try again.</span>
+          </div>
+          <div class="checkout-status checkout-status-success" id="status-success" hidden>
+            <div>
+              Payment received! Your receipt and download links are on their way to your email.
+              <div class="order-reference">
+                <span class="order-reference-label">Order Reference:</span>
+                <span class="order-reference-value" id="order-reference-value">&mdash;</span>
+                <button type="button" class="btn btn-secondary order-reference-copy-btn" id="order-reference-copy-btn">
+                  Copy
+                </button>
+              </div>
+              <p class="lookup-footer-note">
+                Save this reference along with your email in case you need to re-access your
+                downloads later. Lost your download link?
+                <a href="lookup-order.html">Look up your order</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="checkout-summary">
+          <h2>Order summary</h2>
+          <ul class="checkout-summary-list" id="checkout-summary-list">
+            <!-- summary lines injected here -->
+          </ul>
+          <div class="checkout-summary-total">
+            <span>Total</span>
+            <span id="checkout-summary-total">₦0</span>
+          </div>
+        </aside>
+      </div>
+
+      <!-- ============ EMPTY STATE ============ -->
+      <div class="checkout-empty" id="checkout-empty" hidden>
+        <p>Your cart is empty, so there's nothing to check out yet.</p>
+        <a href="storefront.html" class="btn btn-primary">Browse the Books</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <a href="../index.html" class="brand">Author<span>Shelf</span></a>
+      <nav class="footer-links">
+        <a href="about.html">About</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="lookup-order.html">Look Up Order</a>
+      </nav>
+    </div>
+    <p class="footer-bottom">&copy; 2026 Author Name. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Paystack Inline JS — provides the global PaystackPop used in checkout.js -->
+<script src="https://js.paystack.co/v2/inline.js"></script>
+
+<script src="../assets/js/books-data.js"></script>
+<script src="../assets/js/cart.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/checkout.js"></script>
+</body>
+</html>

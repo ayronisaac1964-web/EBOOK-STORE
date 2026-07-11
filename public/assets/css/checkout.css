@@ -1,0 +1,190 @@
+/* ============================================
+   CHECKOUT PAGE — page-specific rules
+   ============================================ */
+
+.checkout-page h1 { font-size: var(--fs-h2); margin-top: var(--space-xs); }
+
+.checkout-layout {
+  display: grid;
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+  align-items: start;
+}
+
+@media (min-width: 860px) {
+  .checkout-layout { grid-template-columns: 1fr 320px; }
+}
+
+/* --- Form column --- */
+.checkout-label {
+  display: block;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.checkout-hint {
+  color: var(--color-cream-dim);
+  font-size: var(--fs-small);
+  margin-bottom: var(--space-sm);
+}
+
+.checkout-input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-inset);
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+}
+
+.checkout-input:focus {
+  border-color: var(--color-gold);
+}
+
+.checkout-input.input-invalid {
+  border-color: var(--color-burgundy-bright);
+}
+
+.checkout-error {
+  color: var(--color-burgundy-bright);
+  font-size: var(--fs-small);
+  margin-top: 0.4rem;
+}
+
+.checkout-pay-btn {
+  width: 100%;
+  justify-content: center;
+  margin-top: var(--space-md);
+}
+
+.checkout-pay-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* --- Status states --- */
+.checkout-status {
+  margin-top: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-small);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.checkout-status-processing {
+  background: var(--color-bg-raised);
+  color: var(--color-cream-dim);
+}
+
+.checkout-status-error {
+  background: rgba(122, 31, 43, 0.25);
+  color: var(--color-cream);
+  border: 1px solid var(--color-burgundy-bright);
+}
+
+.checkout-status-success {
+  background: rgba(201, 162, 75, 0.15);
+  color: var(--color-cream);
+  border: 1px solid var(--color-gold);
+}
+
+.checkout-spinner {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-gold);
+  animation: spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* --- Order reference + copy button (shown on payment success) --- */
+.order-reference {
+  margin-top: var(--space-sm);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  font-size: var(--fs-small);
+}
+
+.order-reference-label { color: var(--color-cream-dim); }
+
+.order-reference-value {
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--color-gold);
+  word-break: break-all;
+}
+
+.order-reference-copy-btn {
+  padding: 0.35rem 0.9rem;
+  font-size: var(--fs-eyebrow);
+}
+
+.lookup-footer-note {
+  margin-top: var(--space-sm);
+  font-size: var(--fs-small);
+  color: var(--color-cream-dim);
+}
+
+.lookup-footer-note a { color: var(--color-gold); }
+.lookup-footer-note a:hover { color: var(--color-gold-bright); }
+
+/* --- Summary panel --- */
+.checkout-summary {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-raised);
+  padding: var(--space-md);
+}
+
+.checkout-summary h2 {
+  font-size: var(--fs-h3);
+  margin-bottom: var(--space-sm);
+}
+
+.checkout-summary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: var(--space-sm);
+}
+
+.checkout-summary-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--fs-small);
+  color: var(--color-cream-dim);
+}
+
+.checkout-summary-line span:last-child { color: var(--color-cream); }
+
+.checkout-summary-total {
+  display: flex;
+  justify-content: space-between;
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--color-border);
+  font-weight: 600;
+}
+
+.checkout-summary-total span:last-child { color: var(--color-gold); }
+
+/* --- Empty state --- */
+.checkout-empty {
+  text-align: center;
+  padding: var(--space-2xl) 0;
+  color: var(--color-cream-dim);
+}
+
+.checkout-empty p { margin-bottom: var(--space-md); }

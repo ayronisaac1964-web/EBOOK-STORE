@@ -1,0 +1,240 @@
+/* ============================================
+   ADMIN PANEL — shared across all /admin pages.
+   Deliberately plainer than the public site: dense
+   tables, visible borders, no marketing flourishes.
+   Load order: variables.css -> style.css -> admin.css
+   ============================================ */
+
+body.admin {
+  font-family: var(--font-body);
+}
+
+.admin-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* --- Sidebar nav --- */
+.admin-nav {
+  width: 220px;
+  flex-shrink: 0;
+  background: var(--color-bg-inset);
+  border-right: 1px solid var(--color-border);
+  padding: var(--space-md) var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.admin-nav .brand {
+  font-size: 1.1rem;
+  margin-bottom: var(--space-md);
+  padding: 0 var(--space-xs);
+}
+
+.admin-nav a {
+  display: block;
+  padding: 0.6rem var(--space-xs);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-small);
+  color: var(--color-cream-dim);
+}
+
+.admin-nav a:hover,
+.admin-nav a[aria-current="page"] {
+  background: var(--color-bg-raised);
+  color: var(--color-cream);
+}
+
+.admin-nav .admin-logout {
+  margin-top: auto;
+  background: none;
+  border: 1px solid var(--color-border);
+  color: var(--color-cream-dim);
+  text-align: left;
+  cursor: pointer;
+}
+
+/* --- Main content area --- */
+.admin-main {
+  flex: 1;
+  padding: var(--space-lg) var(--space-xl);
+  max-width: 1000px;
+}
+
+.admin-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+
+.admin-header h1 {
+  font-size: var(--fs-h2);
+}
+
+/* --- Stat cards (dashboard) --- */
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.admin-stat {
+  background: var(--color-bg-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+}
+
+.admin-stat .value {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--color-gold);
+}
+
+.admin-stat .label {
+  font-size: var(--fs-small);
+  color: var(--color-cream-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* --- Tables --- */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-small);
+}
+
+.admin-table th,
+.admin-table td {
+  text-align: left;
+  padding: 0.75rem var(--space-xs);
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+}
+
+.admin-table th {
+  color: var(--color-cream-dim);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+}
+
+.admin-table .row-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.admin-table .row-actions button {
+  font-size: var(--fs-small);
+  padding: 0.3rem 0.7rem;
+}
+
+/* --- Status pills --- */
+.status-pill {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-pill.paid { background: rgba(154, 205, 156, 0.18); color: #9acd9c; }
+.status-pill.pending { background: rgba(212, 175, 55, 0.18); color: var(--color-gold-bright); }
+.status-pill.failed { background: rgba(156, 42, 56, 0.25); color: var(--color-burgundy-bright); }
+.status-pill.inactive { background: rgba(202, 191, 174, 0.15); color: var(--color-cream-dim); }
+
+/* --- Forms --- */
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-width: 520px;
+}
+
+.admin-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: var(--fs-small);
+  color: var(--color-cream-dim);
+}
+
+.admin-form input[type="text"],
+.admin-form input[type="number"],
+.admin-form input[type="password"],
+.admin-form input[type="file"],
+.admin-form textarea {
+  background: var(--color-bg-inset);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.75rem;
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+}
+
+.admin-form textarea {
+  resize: vertical;
+  min-height: 6rem;
+}
+
+.admin-form .field-hint {
+  font-size: 0.75rem;
+  color: var(--color-cream-dim);
+  opacity: 0.8;
+}
+
+.admin-form .upload-progress {
+  font-size: 0.75rem;
+  color: var(--color-gold);
+}
+
+.admin-message {
+  padding: 0.75rem var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-small);
+  margin-bottom: var(--space-sm);
+}
+
+.admin-message.error {
+  background: rgba(156, 42, 56, 0.2);
+  border: 1px solid var(--color-burgundy-bright);
+}
+
+.admin-message.success {
+  background: rgba(154, 205, 156, 0.15);
+  border: 1px solid #9acd9c;
+}
+
+/* --- Login page (no sidebar) --- */
+.admin-login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-login-card {
+  width: 100%;
+  max-width: 360px;
+  background: var(--color-bg-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+}
+
+.admin-login-card h1 {
+  font-size: var(--fs-h3);
+  margin-bottom: var(--space-md);
+}
+
+@media (max-width: 720px) {
+  .admin-shell { flex-direction: column; }
+  .admin-nav { width: 100%; flex-direction: row; overflow-x: auto; }
+  .admin-nav .admin-logout { margin-top: 0; }
+  .admin-main { padding: var(--space-md); }
+}

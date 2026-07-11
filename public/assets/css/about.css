@@ -1,0 +1,92 @@
+/* ============================================
+   ABOUT / AUTHOR PAGE — page-specific rules
+   ============================================ */
+
+.about-grid {
+  display: grid;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+@media (min-width: 720px) {
+  .about-grid { grid-template-columns: 0.35fr 0.65fr; }
+}
+
+.about-photo {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-md);
+  max-width: 280px;
+}
+
+.about-hero h1 { font-size: var(--fs-h2); }
+
+.about-tagline {
+  margin-top: var(--space-sm);
+  color: var(--color-cream-dim);
+  font-size: 1.1rem;
+  max-width: 46ch;
+}
+
+/* --- Full bio --- */
+.about-bio {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 860px) {
+  .about-bio .container {
+    display: grid;
+    grid-template-columns: 0.65fr 0.35fr;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+}
+
+.about-bio-text p {
+  color: var(--color-cream-dim);
+  max-width: 65ch;
+  margin-bottom: var(--space-md);
+}
+
+.about-bio-text p:last-child { margin-bottom: 0; }
+
+.about-facts {
+  display: grid;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: var(--color-bg-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  align-self: start;
+}
+
+.about-fact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.about-fact-label {
+  font-size: var(--fs-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-gold);
+}
+
+.about-fact-value {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+}
+
+/* --- CTA band --- */
+.about-cta {
+  border-top: 1px solid var(--color-border);
+}
+
+.about-cta-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  align-items: center;
+  justify-content: space-between;
+}
