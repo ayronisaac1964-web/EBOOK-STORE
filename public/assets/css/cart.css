@@ -163,3 +163,16 @@
   .cart-line-total { grid-area: total; }
   .cart-line-remove { grid-area: remove; justify-self: start; }
 }
+
+/* --- Order lookup link (cart summary + empty state) --- */
+.cart-lookup-link {
+  display: block;
+  text-align: center;
+  margin-top: var(--space-sm);
+  font-size: var(--fs-small);
+  color: var(--color-cream-dim);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.cart-lookup-link:hover { color: var(--color-burgundy); }
+.cart-empty .cart-lookup-link { margin-top: var(--space-md); }
