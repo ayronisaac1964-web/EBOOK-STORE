@@ -40,16 +40,98 @@
   max-width: 60ch;
 }
 
-/* --- Catalog grid --- */
 .catalog { padding-top: 0; }
 
+/* --- Catalog carousel: swipe/scroll horizontally, one "shelf" of books.
+   Native scroll-snap gives free touch-swipe on mobile; arrow buttons
+   cover desktop/mouse users. --- */
+.catalog-carousel {
+  position: relative;
+}
+
 .catalog-grid {
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  gap: var(--space-md);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: var(--space-md);
+  padding: var(--space-xs) var(--space-xs) var(--space-lg);
+  margin: 0 calc(var(--space-xs) * -1);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.catalog-grid::-webkit-scrollbar { display: none; }
+
+.catalog-grid .book-card {
+  flex: 0 0 200px;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 540px) {
+  .catalog-grid .book-card { flex-basis: 230px; }
+}
+
+.catalog-nav {
+  display: none;
 }
 
 @media (min-width: 720px) {
-  .catalog-grid { grid-template-columns: repeat(4, 1fr); }
+  .catalog-nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    margin-bottom: var(--space-sm);
+  }
 }
+
+.catalog-nav-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-raised);
+  border: var(--border-ink);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-pop-sm);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--color-ink);
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+
+.catalog-nav-btn:hover { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--color-ink); }
+
+.catalog-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+  transform: none;
+  box-shadow: var(--shadow-pop-sm);
+}
+
+.catalog-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: var(--space-sm);
+}
+
+@media (min-width: 720px) {
+  .catalog-dots { display: none; }
+}
+
+.catalog-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-ink);
+  background: transparent;
+  padding: 0;
+}
+
+.catalog-dot.active { background: var(--color-gold); }
 
 /* Whole card is a link — override anchor defaults, keep .book-card look */
 .book-card-link {
