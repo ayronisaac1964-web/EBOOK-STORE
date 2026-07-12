@@ -137,11 +137,13 @@ module.exports = async (req, res) => {
         .collection("books")
         .findOneAndUpdate({ id }, { $set: update }, { returnDocument: "after" });
 
-      if (!result.value) {
+      // mongodb driver v6 returns the updated document directly (or null)
+      // instead of the old { value } wrapper.
+      if (!result) {
         res.status(404).json({ error: "Book not found" });
         return;
       }
-      res.status(200).json(result.value);
+      res.status(200).json(result);
     } catch (err) {
       console.error("PATCH /api/admin/books/[id] failed", err);
       res.status(500).json({ error: "Could not update book" });
@@ -168,11 +170,13 @@ module.exports = async (req, res) => {
           { returnDocument: "after" }
         );
 
-      if (!result.value) {
+      // mongodb driver v6 returns the updated document directly (or null)
+      // instead of the old { value } wrapper.
+      if (!result) {
         res.status(404).json({ error: "Book not found" });
         return;
       }
-      res.status(200).json({ ok: true, book: result.value });
+      res.status(200).json({ ok: true, book: result });
     } catch (err) {
       console.error("DELETE /api/admin/books/[id] failed", err);
       res.status(500).json({ error: "Could not remove book" });
