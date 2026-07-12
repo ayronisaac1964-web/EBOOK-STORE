@@ -1,4 +1,8 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/api/admin/books/:id", "destination": "/api/admin/books?id=:id" },
+    { "source": "/api/books/:id", "destination": "/api/books?id=:id" }
+  ]
 }
