@@ -1,7 +1,7 @@
 /* ============================================
    LANDING PAGE — page-specific rules
    Marketing/entry page only. Catalog lives on
-   pages/storefront.html (built in a later step).
+   pages/storefront.html.
    ============================================ */
 
 /* --- Hero --- */
@@ -20,37 +20,60 @@
   pointer-events: none;
 }
 
+/* Faint paper-grain texture — tactile, not decorative-for-its-own-sake */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 .hero-inner {
   display: grid;
   gap: var(--space-2xl);
   align-items: center;
+  position: relative;
 }
 
 @media (min-width: 860px) {
   .hero-inner {
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: 1.05fr 0.95fr;
   }
 }
 
 .hero-author {
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: 0.65rem;
   margin-bottom: var(--space-lg);
   font-size: var(--fs-small);
   color: var(--color-cream-dim);
+  opacity: 0;
+  animation: hero-rise 0.7s var(--ease) 0.05s both;
 }
 
 .author-mark {
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   border: 1px solid var(--color-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.03em;
+  color: var(--color-gold);
 }
 
 .hero h1 {
   font-size: var(--fs-hero);
   max-width: 14ch;
+  opacity: 0;
+  animation: hero-rise 0.7s var(--ease) 0.15s both;
 }
 
 .hero h1 em {
@@ -63,6 +86,8 @@
   max-width: 46ch;
   color: var(--color-cream-dim);
   font-size: 1.1rem;
+  opacity: 0;
+  animation: hero-rise 0.7s var(--ease) 0.25s both;
 }
 
 .hero-actions {
@@ -71,48 +96,112 @@
   flex-wrap: wrap;
   gap: var(--space-sm);
   align-items: center;
+  opacity: 0;
+  animation: hero-rise 0.7s var(--ease) 0.35s both;
 }
 
 .hero-note {
+  margin-top: var(--space-md);
   font-size: var(--fs-small);
   color: var(--color-cream-dim);
+  opacity: 0;
+  animation: hero-rise 0.7s var(--ease) 0.42s both;
 }
 
-/* Hero visual: stacked "book spine" motif, no real cover art yet */
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Hero visual: a manuscript excerpt, not an illustrated prop.
+   Grounded in the actual book's own words — pulls a real excerpt from
+   /api/books when one exists (see landing.js). No fragile faux-3D
+   gradients that fall apart without a real cover photo behind them. */
 .hero-visual {
-  aspect-ratio: 4 / 5;
-  border-radius: var(--radius-md);
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
-.spine-stack {
+.manuscript-card {
   position: relative;
   width: 100%;
-  height: 100%;
-}
-
-.spine {
-  position: absolute;
-  border-radius: var(--radius-sm);
+  padding: var(--space-xl) var(--space-lg) var(--space-lg);
+  background: var(--color-bg-raised);
   border: 1px solid var(--color-border);
-  box-shadow: 0 20px 40px -20px rgba(0,0,0,0.6);
+  border-left: 3px solid var(--color-gold);
+  border-radius: var(--radius-md);
+  box-shadow: 0 32px 60px -30px rgba(0, 0, 0, 0.65);
+  opacity: 0;
+  animation: hero-rise 0.8s var(--ease) 0.3s both;
 }
 
-.spine-1 { inset: 12% 8% 8% 30%; background: linear-gradient(160deg, #2b1015, #1a0e12); z-index: 3; }
-.spine-2 { inset: 4% 18% 16% 12%; background: linear-gradient(160deg, var(--color-burgundy), #24131a); z-index: 2; transform: rotate(-4deg); }
-.spine-3 { inset: 0 28% 24% 0%; background: linear-gradient(160deg, #3a1a22, #1a0e12); z-index: 1; transform: rotate(4deg); }
-
-.spine-label {
+.manuscript-tag {
   position: absolute;
-  bottom: var(--space-sm);
-  left: var(--space-sm);
-  right: var(--space-sm);
-  font-family: var(--font-display);
+  top: var(--space-md);
+  right: var(--space-md);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: var(--color-gold);
-  font-size: 0.8rem;
+  border: 1px solid rgba(201, 162, 75, 0.4);
+  border-radius: var(--radius-pill);
+  padding: 0.3em 0.85em;
 }
 
-/* --- How it works --- */
+.manuscript-mark {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 4.5rem;
+  line-height: 1;
+  color: var(--color-gold);
+  opacity: 0.55;
+}
+
+.manuscript-excerpt {
+  margin-top: -1.25rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.15rem, 1vw + 1rem, 1.5rem);
+  line-height: 1.5;
+  color: var(--color-cream);
+}
+
+.manuscript-foot {
+  margin-top: var(--space-lg);
+}
+
+.manuscript-rule {
+  width: 40px;
+  height: 1px;
+  background: var(--color-gold);
+  opacity: 0.7;
+}
+
+.manuscript-meta {
+  margin-top: var(--space-sm);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.manuscript-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--color-cream);
+}
+
+.manuscript-price {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--color-gold);
+}
+
+/* --- How it works: a ticket-stub strip — receipt-like, on theme with
+   "buy direct, no marketplace between you and the page" --- */
 .steps {
   display: grid;
   gap: var(--space-lg);
@@ -124,18 +213,37 @@
 }
 
 .step {
-  padding: var(--space-lg);
+  position: relative;
+  padding: calc(var(--space-lg) + 8px) var(--space-lg) var(--space-lg);
   background: var(--color-bg-raised);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  position: relative;
 }
 
-.step-number {
-  font-family: var(--font-display);
-  font-size: 2.5rem;
+.step::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: var(--space-sm);
+  right: var(--space-sm);
+  height: 10px;
+  background-image: radial-gradient(circle, var(--color-bg) 2.2px, transparent 2.6px);
+  background-size: 14px 10px;
+  background-position: 5px 0;
+  background-repeat: repeat-x;
+}
+
+.step-stamp {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-gold);
   color: var(--color-gold);
-  opacity: 0.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
   margin-bottom: var(--space-sm);
 }
 
@@ -171,6 +279,7 @@
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
+  font-size: 1.05rem;
 }
 
 .why-item h3 { margin-bottom: 0.35rem; }
@@ -196,15 +305,29 @@
   .book-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
-.book-card { text-align: left; }
+.book-card {
+  text-align: left;
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+a.book-card:hover { transform: translateY(-4px); }
 
 .book-cover {
   aspect-ratio: 2 / 3;
   border-radius: var(--radius-sm);
   margin-bottom: var(--space-sm);
+  background-size: cover;
+  background-position: center;
 }
 
 .book-cover span { padding: var(--space-sm); }
+
+.book-cover.soon {
+  border-style: dashed;
+  opacity: 0.75;
+}
+
+.book-cover.soon span { font-style: italic; }
 
 .book-title {
   font-family: var(--font-display);
@@ -218,6 +341,11 @@
   font-weight: 600;
 }
 
+.featured-empty {
+  margin-top: var(--space-xl);
+  color: var(--color-cream-dim);
+}
+
 /* --- Author bio teaser --- */
 .bio-block {
   display: grid;
@@ -229,10 +357,26 @@
   .bio-block { grid-template-columns: 0.4fr 0.6fr; }
 }
 
-.bio-photo {
-  aspect-ratio: 1 / 1;
-  border-radius: var(--radius-md);
-  max-width: 260px;
+/* Monogram medallion — stands in for an author photo until one is
+   uploaded, but reads as a deliberate choice, not an empty box */
+.bio-medallion {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 1px solid var(--color-gold);
+  background: radial-gradient(circle at 35% 30%, var(--color-burgundy-bright), var(--color-bg-raised) 72%);
+  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(245, 239, 230, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 2.75rem;
+  color: var(--color-gold);
+  justify-self: start;
+}
+
+@media (min-width: 720px) {
+  .bio-medallion { justify-self: center; }
 }
 
 .bio-block p { color: var(--color-cream-dim); margin: var(--space-sm) 0 var(--space-md); }
@@ -278,6 +422,5 @@
   max-width: 65ch;
 }
 
-/* remove default <details> marker */
 .faq-item summary::-webkit-details-marker { display: none; }
 .faq-item summary { list-style: none; }
