@@ -77,6 +77,10 @@
   gap: 0.6rem;
 }
 
+.checkout-status[hidden] {
+  display: none;
+}
+
 .checkout-status-processing {
   background: var(--color-bg-raised);
   color: var(--color-cream-dim);
