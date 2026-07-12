@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // resolves asynchronously.
   await window.BOOKS_READY;
   renderCatalog(BOOKS);
+  initCarousel();
 
   // One delegated listener covers every .btn-add, including cards re-rendered later.
   document.getElementById("catalog-grid").addEventListener("click", (e) => {
@@ -17,6 +18,68 @@ document.addEventListener("DOMContentLoaded", async () => {
     flashAdded(btn);
   });
 });
+
+// Arrow buttons + dot indicators for the swipeable catalog carousel.
+// Scrolling is native (scroll-snap) — this just adds desktop controls
+// and keeps the dots in sync with whichever card is in view.
+function initCarousel() {
+  const track = document.getElementById("catalog-grid");
+  const prevBtn = document.getElementById("catalog-prev");
+  const nextBtn = document.getElementById("catalog-next");
+  const dotsWrap = document.getElementById("catalog-dots");
+  const cards = track.querySelectorAll(".book-card");
+
+  if (!cards.length) {
+    prevBtn.disabled = true;
+    nextBtn.disabled = true;
+    return;
+  }
+
+  dotsWrap.innerHTML = Array.from(cards)
+    .map((_, i) => `<button class="catalog-dot${i === 0 ? " active" : ""}" data-index="${i}" aria-label="Go to book ${i + 1}"></button>`)
+    .join("");
+  const dots = dotsWrap.querySelectorAll(".catalog-dot");
+
+  function scrollByCard(dir) {
+    const card = track.querySelector(".book-card");
+    const step = card ? card.getBoundingClientRect().width + 24 : 240;
+    track.scrollBy({ left: dir * step, behavior: "smooth" });
+  }
+
+  prevBtn.addEventListener("click", () => scrollByCard(-1));
+  nextBtn.addEventListener("click", () => scrollByCard(1));
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      const i = Number(dot.dataset.index);
+      cards[i].scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+    });
+  });
+
+  // Update active dot + disabled arrow state as the user scrolls/swipes.
+  let ticking = false;
+  track.addEventListener("scroll", () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const scrollLeft = track.scrollLeft;
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      prevBtn.disabled = scrollLeft <= 4;
+      nextBtn.disabled = scrollLeft >= maxScroll - 4;
+
+      let closest = 0;
+      let closestDist = Infinity;
+      cards.forEach((card, i) => {
+        const dist = Math.abs(card.offsetLeft - scrollLeft);
+        if (dist < closestDist) { closestDist = dist; closest = i; }
+      });
+      dots.forEach((d, i) => d.classList.toggle("active", i === closest));
+      ticking = false;
+    });
+  });
+
+  prevBtn.disabled = true;
+}
 
 // Brief "Added ✓" confirmation on the button itself — no popup/toast needed.
 function flashAdded(btn) {
