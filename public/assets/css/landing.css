@@ -11,24 +11,20 @@
   overflow: hidden;
 }
 
+/* Halftone dot texture — pulp-paperback print effect, not a soft glow */
 .hero::before {
   content: "";
   position: absolute;
-  inset: -20% -10% auto -10%;
-  height: 60%;
-  background: radial-gradient(ellipse at 30% 0%, rgba(201, 162, 75, 0.16), transparent 60%);
+  inset: 0;
+  background-image: radial-gradient(var(--color-ink) 1.4px, transparent 1.4px);
+  background-size: 18px 18px;
+  opacity: 0.08;
   pointer-events: none;
 }
 
-/* Faint paper-grain texture — tactile, not decorative-for-its-own-sake */
 .hero::after {
   content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0.05;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  display: none;
 }
 
 .hero-inner {
@@ -59,14 +55,16 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: 1px solid var(--color-gold);
+  border: var(--border-ink);
+  background: var(--color-gold);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
+  font-weight: 700;
   font-size: 0.65rem;
   letter-spacing: 0.03em;
-  color: var(--color-gold);
+  color: var(--color-ink);
 }
 
 .hero h1 {
@@ -126,27 +124,39 @@
 .manuscript-card {
   position: relative;
   width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
   padding: var(--space-xl) var(--space-lg) var(--space-lg);
-  background: var(--color-bg-raised);
-  border: 1px solid var(--color-border);
-  border-left: 3px solid var(--color-gold);
+  background: var(--color-teal);
+  border: var(--border-ink-thick);
   border-radius: var(--radius-md);
-  box-shadow: 0 32px 60px -30px rgba(0, 0, 0, 0.65);
+  box-shadow: var(--shadow-pop-lg);
+  transform: rotate(2deg);
   opacity: 0;
   animation: hero-rise 0.8s var(--ease) 0.3s both;
 }
 
 .manuscript-tag {
   position: absolute;
-  top: var(--space-md);
-  right: var(--space-md);
-  font-size: 0.68rem;
-  letter-spacing: 0.16em;
+  top: -18px;
+  right: -14px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--color-gold);
-  border: 1px solid rgba(201, 162, 75, 0.4);
-  border-radius: var(--radius-pill);
-  padding: 0.3em 0.85em;
+  color: var(--color-ink);
+  background: var(--color-gold);
+  border: var(--border-ink);
+  border-radius: 50%;
+  width: 76px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.15;
+  transform: rotate(8deg);
 }
 
 .manuscript-mark {
@@ -156,7 +166,7 @@
   font-size: 4.5rem;
   line-height: 1;
   color: var(--color-gold);
-  opacity: 0.55;
+  opacity: 0.9;
 }
 
 .manuscript-excerpt {
@@ -165,7 +175,7 @@
   font-style: italic;
   font-size: clamp(1.15rem, 1vw + 1rem, 1.5rem);
   line-height: 1.5;
-  color: var(--color-cream);
+  color: var(--color-bg);
 }
 
 .manuscript-foot {
@@ -174,9 +184,9 @@
 
 .manuscript-rule {
   width: 40px;
-  height: 1px;
+  height: 2px;
   background: var(--color-gold);
-  opacity: 0.7;
+  opacity: 0.9;
 }
 
 .manuscript-meta {
@@ -190,8 +200,9 @@
 
 .manuscript-title {
   font-family: var(--font-display);
+  font-weight: 700;
   font-size: 1.05rem;
-  color: var(--color-cream);
+  color: var(--color-bg);
 }
 
 .manuscript-price {
@@ -214,36 +225,20 @@
 
 .step {
   position: relative;
-  padding: calc(var(--space-lg) + 8px) var(--space-lg) var(--space-lg);
+  padding: var(--space-lg);
   background: var(--color-bg-raised);
-  border: 1px solid var(--color-border);
+  border: var(--border-ink);
   border-radius: var(--radius-md);
-}
-
-.step::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: var(--space-sm);
-  right: var(--space-sm);
-  height: 10px;
-  background-image: radial-gradient(circle, var(--color-bg) 2.2px, transparent 2.6px);
-  background-size: 14px 10px;
-  background-position: 5px 0;
-  background-repeat: repeat-x;
+  box-shadow: var(--shadow-pop);
 }
 
 .step-stamp {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: 1.5px solid var(--color-gold);
-  color: var(--color-gold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-family: var(--font-display);
-  font-size: 0.95rem;
+  font-weight: 800;
+  font-size: 2.25rem;
+  line-height: 1;
+  color: var(--color-gold-bright);
+  -webkit-text-stroke: 1.5px var(--color-ink);
   margin-bottom: var(--space-sm);
 }
 
@@ -273,8 +268,9 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  border: 1px solid var(--color-gold);
-  color: var(--color-gold);
+  border: var(--border-ink);
+  background: var(--color-gold);
+  color: var(--color-ink);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -307,17 +303,21 @@
 
 .book-card {
   text-align: left;
-  transition: transform var(--dur-fast) var(--ease);
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
 }
 
-a.book-card:hover { transform: translateY(-4px); }
+a.book-card:hover { transform: translate(-2px, -4px); }
+a.book-card:hover .book-cover { box-shadow: var(--shadow-pop); }
 
 .book-cover {
   aspect-ratio: 2 / 3;
+  border: var(--border-ink);
   border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-pop-sm);
   margin-bottom: var(--space-sm);
   background-size: cover;
   background-position: center;
+  transition: box-shadow var(--dur-fast) var(--ease);
 }
 
 .book-cover span { padding: var(--space-sm); }
@@ -363,15 +363,16 @@ a.book-card:hover { transform: translateY(-4px); }
   width: 180px;
   height: 180px;
   border-radius: 50%;
-  border: 1px solid var(--color-gold);
-  background: radial-gradient(circle at 35% 30%, var(--color-burgundy-bright), var(--color-bg-raised) 72%);
-  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(245, 239, 230, 0.06);
+  border: var(--border-ink-thick);
+  background: var(--color-burgundy);
+  box-shadow: var(--shadow-pop-lg);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
+  font-weight: 800;
   font-size: 2.75rem;
-  color: var(--color-gold);
+  color: var(--color-bg);
   justify-self: start;
 }
 
