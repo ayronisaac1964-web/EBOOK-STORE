@@ -8,7 +8,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- Token file loads first, then base/shared, then this page's own rules -->
 <link rel="stylesheet" href="../assets/css/variables.css">
@@ -21,6 +21,7 @@
   <div class="container">
     <a href="../index.html" class="brand">Author<span>Shelf</span></a>
     <nav class="nav-links">
+      <a href="../index.html">Home</a>
       <a href="storefront.html">Books</a>
       <a href="about.html">About</a>
     </nav>
@@ -41,13 +42,20 @@
     </div>
   </section>
 
-  <!-- ============ CATALOG GRID ============ -->
-  <!-- Populated from BOOKS in assets/js/books-data.js — see storefront.js -->
+  <!-- ============ CATALOG CAROUSEL ============ -->
+  <!-- Populated from BOOKS in assets/js/books-data.js — see storefront.js.
+       Horizontal scroll-snap carousel: swipe on mobile, arrow buttons
+       on desktop. Same .book-card markup as the grid used to have. -->
   <section class="section catalog">
-    <div class="container">
+    <div class="container catalog-carousel">
+      <div class="catalog-nav">
+        <button class="catalog-nav-btn" id="catalog-prev" aria-label="Previous book">&#8592;</button>
+        <button class="catalog-nav-btn" id="catalog-next" aria-label="Next book">&#8594;</button>
+      </div>
       <div class="book-grid catalog-grid" id="catalog-grid">
         <!-- book cards injected here by storefront.js -->
       </div>
+      <div class="catalog-dots" id="catalog-dots"></div>
     </div>
   </section>
 
