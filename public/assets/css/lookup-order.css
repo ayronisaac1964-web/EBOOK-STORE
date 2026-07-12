@@ -72,13 +72,13 @@
 }
 
 .lookup-result-error {
-  background: rgba(122, 31, 43, 0.25);
+  background: rgba(193, 68, 14, 0.14);
   color: var(--color-cream);
   border: 1px solid var(--color-burgundy-bright);
 }
 
 .lookup-result-success {
-  background: rgba(201, 162, 75, 0.15);
+  background: rgba(232, 163, 61, 0.18);
   color: var(--color-cream);
   border: 1px solid var(--color-gold);
 }
