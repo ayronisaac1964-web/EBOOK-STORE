@@ -67,32 +67,34 @@ button { font-family: inherit; cursor: pointer; }
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.9rem 1.8rem;
+  padding: 0.85rem 1.7rem;
   border-radius: var(--radius-pill);
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-weight: 700;
   font-size: var(--fs-body);
-  border: 1px solid transparent;
+  border: var(--border-ink);
+  box-shadow: var(--shadow-pop-sm);
   transition: transform var(--dur-fast) var(--ease),
-              background var(--dur-fast) var(--ease),
-              border-color var(--dur-fast) var(--ease);
+              box-shadow var(--dur-fast) var(--ease),
+              background var(--dur-fast) var(--ease);
 }
 
-.btn:hover { transform: translateY(-2px); }
+.btn:hover { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--color-ink); }
+.btn:active { transform: translate(3px, 3px); box-shadow: 0 0 0 var(--color-ink); }
 
 .btn-primary {
   background: var(--color-gold);
-  color: var(--color-bg);
+  color: var(--color-ink);
 }
 .btn-primary:hover { background: var(--color-gold-bright); }
 
 .btn-secondary {
-  background: transparent;
+  background: var(--color-bg);
   color: var(--color-cream);
-  border-color: var(--color-border);
 }
 .btn-secondary:hover {
-  border-color: var(--color-burgundy-bright);
   background: var(--color-burgundy);
+  color: var(--color-bg);
 }
 
 /* --- Site header / nav (shared shell for all public pages) --- */
@@ -100,9 +102,8 @@ button { font-family: inherit; cursor: pointer; }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(26, 14, 18, 0.85);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg);
+  border-bottom: var(--border-ink-thick);
 }
 
 .site-header .container {
@@ -115,8 +116,9 @@ button { font-family: inherit; cursor: pointer; }
 
 .brand {
   font-family: var(--font-display);
+  font-weight: 800;
   font-size: 1.35rem;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
 }
 
 .brand span { color: var(--color-gold); }
@@ -137,7 +139,7 @@ button { font-family: inherit; cursor: pointer; }
 
 /* --- Site footer (shared shell for all public pages) --- */
 .site-footer {
-  border-top: 1px solid var(--color-border);
+  border-top: var(--border-ink-thick);
   padding: var(--space-2xl) 0 var(--space-lg);
 }
 
@@ -178,7 +180,7 @@ button { font-family: inherit; cursor: pointer; }
 .placeholder {
   background:
     linear-gradient(135deg, var(--color-bg-raised), var(--color-bg-inset));
-  border: 1px solid var(--color-border);
+  border: var(--border-ink);
   display: flex;
   align-items: center;
   justify-content: center;
